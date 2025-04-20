@@ -1,3 +1,4 @@
+import * as React from "react"
 import { Html, Head, Body, Text } from "@react-email/components"
 
 export function ContactEmail({

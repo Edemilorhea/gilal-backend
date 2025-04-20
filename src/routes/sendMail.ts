@@ -17,9 +17,9 @@ const router = Router()
  *             properties:
  *               subject:
  *                 type: string
- *               message:
+ *               details:
  *                 type: string
- *               name:
+ *               fullName:
  *                 type: string
  *               email:
  *                 type: string

@@ -33,10 +33,8 @@ export const sendEmail = async (req: Request, res: Response) => {
 	console.log(req.body)
 	const { subject, fullName, email, details, country } = req.body
 	const to: string = process.env.TO_EMAIL!
-	console.log(subject, fullName, email, details, country)
-	try {
-		// ✅ 使用 ReactEmail 渲染成 HTML
 
+	try {
 		const html = await render(
 			<ContactEmail
 				fullName={fullName}
@@ -46,8 +44,9 @@ export const sendEmail = async (req: Request, res: Response) => {
 			/>
 		)
 
-		const gmail = google.gmail({ version: "v1", auth: oAuth2Client })
 		const raw = makeBody(to, subject, html)
+
+		const gmail = google.gmail({ version: "v1", auth: oAuth2Client })
 
 		await gmail.users.messages.send({
 			userId: "me",
@@ -55,8 +54,11 @@ export const sendEmail = async (req: Request, res: Response) => {
 		})
 
 		res.status(200).json({ success: true })
-	} catch (error) {
-		console.error("寄信失敗", error)
+	} catch (error: any) {
+		console.error(
+			"寄信失敗",
+			error?.response?.data || error?.messages || error
+		)
 		res.status(500).json({ error: "寄信失敗" })
 	}
 }
