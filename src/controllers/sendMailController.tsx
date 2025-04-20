@@ -30,14 +30,20 @@ function makeBody(to: string, subject: string, htmlContent: string) {
 }
 
 export const sendEmail = async (req: Request, res: Response) => {
-	const { subject, name, email, message } = req.body
+	console.log(req.body)
+	const { subject, fullName, email, details, country } = req.body
 	const to: string = process.env.TO_EMAIL!
-	console.log(to, subject, name, email, message)
+	console.log(subject, fullName, email, details, country)
 	try {
 		// ✅ 使用 ReactEmail 渲染成 HTML
 
 		const html = await render(
-			<ContactEmail name={name} email={email} message={message} />
+			<ContactEmail
+				fullName={fullName}
+				email={email}
+				details={details}
+				country={country}
+			/>
 		)
 
 		const gmail = google.gmail({ version: "v1", auth: oAuth2Client })

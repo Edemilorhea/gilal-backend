@@ -23,6 +23,8 @@ const router = Router()
  *                 type: string
  *               email:
  *                 type: string
+ *               country:
+ *                 type: string
  *     responses:
  *       200:
  *         description: 寄信成功

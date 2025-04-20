@@ -1,25 +1,30 @@
 import { Html, Head, Body, Text } from "@react-email/components"
 
 export function ContactEmail({
-	name,
+	fullName,
 	email,
-	message,
+	details,
+	country,
 }: {
-	name: string
+	fullName: string
 	email: string
-	message: string
+	details: string
+	country: string
 }) {
 	return (
 		<Html>
 			<Head />
 			<Body>
 				<Text style={{ fontWeight: "bold", fontSize: "20px" }}>
-					聯絡人: {name}
+					聯絡人: {fullName}
 				</Text>
 				<Text style={{ fontWeight: "bold", fontSize: "20px" }}>
 					電子郵件: {email}
 				</Text>
-				<Text>訊息: {message}</Text>
+				<Text style={{ fontWeight: "bold", fontSize: "20px" }}>
+					國籍: {country}
+				</Text>
+				<Text>訊息: {details}</Text>
 			</Body>
 		</Html>
 	)

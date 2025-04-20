@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import cors from "cors"
 import { swaggerSpec } from "./configs/swagger"
 import { sendMailRouter } from "./routes/sendMail"
+import { userLocationRouter } from "./routes/userLocation"
 
 dotenv.config()
 const isDev = process.env.NODE_ENV !== "production"
@@ -13,7 +14,7 @@ const PORT = process.env.PORT || 3133
 
 app.use(
 	cors({
-		origin: isDev ? "http://localhost:3133" : "https://gilal-global.com",
+		origin: isDev ? "http://localhost:3001" : "https://gilal-global.com",
 		credentials: true,
 		methods: ["GET", "POST"],
 		allowedHeaders: ["Content-Type", "Authorization"],
@@ -26,6 +27,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 // 寄信路由
 app.use("/api", sendMailRouter)
+app.use("/api", userLocationRouter)
 
 // 測試 API
 /**
