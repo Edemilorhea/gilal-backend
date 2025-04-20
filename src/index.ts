@@ -10,6 +10,9 @@ dotenv.config()
 const isDev = process.env.NODE_ENV !== "production"
 
 const app = express()
+
+app.set("trust proxy", true) // 👈 這裡！
+
 const PORT = process.env.PORT || 3133
 
 app.use(
