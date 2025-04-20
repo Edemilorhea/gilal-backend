@@ -15,6 +15,7 @@ const getUserLocation = async (req: Request, res: Response) => {
 		)
 		const geoData = await geoRes.text()
 
+		console.log("查詢結果：", geoData)
 		res.status(200).send(geoData)
 	} catch (err) {
 		console.error("地理位置查詢失敗：", err)
